@@ -1,0 +1,30 @@
+<p>foods works!</p>
+<h1>Foods Admin</h1>
+<a class="btn btn-primary mb-3" (click)="addFood()">Add New Food</a>
+<div class="container row">
+  <div class="col-md-6">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Food Name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let food of foods">
+          <td>{{food.id}}</td>
+          <td>{{food.name}}</td>
+          <td>
+            <button type="button" class="btn btn-primary" (click)="viewFood(food.id)" >Show Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6">
+    
+    <app-viewfood *ngIf="action === 'view'" [food]="selectedFood" (bookDeletedEvent)="loadData()"></app-viewfood>
+    <app-addfood *ngIf="action === 'edit' || action === 'add'" [food]="selectedFood" (foodAddedEvent)="loadData()"></app-addfood>
+  </div>
+</div>
