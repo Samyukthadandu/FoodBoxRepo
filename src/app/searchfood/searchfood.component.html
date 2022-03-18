@@ -1,15 +1,10 @@
 <p>searchfood works!</p>
-<div class="container">
-    <div class="row">
-        <div class="col-md-5">
-            <input type="text" class="form-control" [(ngModel)]="filteredString" />            
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-5">
-            <div *ngFor="let food of foods | filterpipe:filteredString" class="my-3">
-               
-            </div>
-        </div>
-    </div>
+<div>
+    <input type="text" class="form-control" placeholder="Serachby Name"
+      style="width:300px" [(ngModel)]="foodname">
+    
+</div>
+<div  *ngFor="let food of foods">
+
+
 </div>

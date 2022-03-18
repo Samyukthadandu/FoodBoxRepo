@@ -1,15 +1,16 @@
 
 <div class="container row">
     <div class="col-md-2">
-        <h2>Delicious..</h2>
+        <h2>Delicious..</h2>    
     </div>
+   
     <div class="col-md-10 custom-products-cart-container">
         <div class="offset-md-8">
             <ul class="nav navbar-nav navbar-right">
 
                 <li class="dropdown">
                     <br>
-                    <a href="#" class="btn btn-info btn-lg" data-toggle="dropdown" role="button" aria-expanded="false">
+                    <a href="#" class="btn btn-info btn-lg"  data-toggle="dropdown" role="button" aria-expanded="false">
                         <span class="fa fa-shopping-cart">
                             FoodItem Added In Cart:
                         </span>
@@ -41,9 +42,24 @@
 <hr>
 <hr>
 
+<label>Filter Food</label>
+<input [(ngModel)]='food'>
+<button type="button" (click)="onFoodFilter()">Search</button>
+<button type="button" (click)="onFoodFilterClear()">Clear</button>
+
+<label>Sort</label>
+<select [(ngModel)]='SortbyParam'>
+<option value ='price'>Price</option>
+<option value ='name'>FoodName</option>
+<option value ='category'>Category</option>
+</select>
+<button type="button" (click)="onSortDirection()">
+<i *ngIf="SortDirection==='asc'" class="fas fa-sort-alpha-down"></i>
+<i *ngIf="SortDirection==='desc'" class="fas fa-sort-alpha-up"></i>
+</button>
 
 <div class="container row">
-    <div class="col-md-4" *ngFor="let food of foods;let i=index">
+    <div class="col-md-4" *ngFor="let food of foods|filterpipe:searchFood:'name'|sortpipe:[SortbyParam,SortDirection]">
         <div class="card card-block">
             <img class="custom-image-style" img src="{{food.retrievedImage}}" height="200" width="200" style="margin-left: 20px;
           margin-top: 10px">
@@ -60,4 +76,5 @@
 
         </div>
     </div>
+    
 </div>

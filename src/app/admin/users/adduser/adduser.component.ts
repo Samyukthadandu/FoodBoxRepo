@@ -24,10 +24,13 @@ export class AdduserComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.user.type='admin';
+
     this.newUser = Object.assign({}, this.user);
   }
 
   addUser() {
+    this.user.type='admin';
     this.httpClientService.addUser(this.user).subscribe(
       (user) => {
         this.userAddedEvent.emit();

@@ -14,18 +14,24 @@ export class ShopfoodComponent implements OnInit {
   
   ];
   cartTotals=0;
-
-  foods!: Array<Food>;
+  food='';
+  foods: Array<Food>=[];
   foodsRecieved!: Array<Food>;
+  searchFood='';
+  SortbyParam='';
+  SortDirection='asc';
 
   cartFoods: any;
 
   constructor(private router: Router, private httpClientService: HttpClientService) { }
+ 
 
   ngOnInit() {
+   // this.cartFoods=[];
     this.httpClientService.getFoods().subscribe(
       response => this.handleSuccessfulResponse(response),
     );
+   
 
     //from localstorage retrieve the cart item
    let data = localStorage.getItem('cart');
@@ -100,6 +106,21 @@ export class ShopfoodComponent implements OnInit {
     this.cartFoods = [];
     localStorage.clear();
   }
+  onFoodFilter(){
+    console.log("im in onFoodFilter()");
+    this.searchFood=this.food;
+  }
+  onFoodFilterClear(){
+    this.searchFood='';
+    this.food='';
+  }
 
+  onSortDirection(){
+    if(this.SortDirection ==='desc'){
+      this.SortDirection ='asc';
+    }else{
+      this.SortDirection ='desc';
+    }
+  }
 
 }

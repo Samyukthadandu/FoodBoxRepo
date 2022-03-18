@@ -10,6 +10,8 @@ export class HttpClientService {
 
   constructor(private httpClient:HttpClient) { }
 
+  
+
   getUsers()
   {
     console.log('Getting all users');
@@ -42,5 +44,8 @@ deleteFood(id:any) {
 }
 updateFood(updatedFood: Food) {
   return this.httpClient.put<Food>('http://localhost:8087/foods/update', updatedFood);
+}
+searchFood(searchTerm:any) {
+  return this.httpClient.get<Food>('http://localhost:8087/foods/search', searchTerm);
 }
 }

@@ -8,7 +8,7 @@ import { MenuComponent } from './menu/menu.component';
 //import { FooterComponent } from './footer/footer.component';
 import { UsersComponent } from './admin/users/users.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdduserComponent } from './admin/users/adduser/adduser.component';
 import { ViewuserComponent } from './admin/users/viewuser/viewuser.component';
 import { FoodsComponent } from './admin/foods/foods.component';
@@ -18,6 +18,14 @@ import { ShopfoodComponent } from './shopfood/shopfood.component';
 import { CartitemComponent } from './shopfood/cartitem/cartitem.component';
 import { SearchfoodComponent } from './searchfood/searchfood.component';
 import { FilterpipePipe } from './filterpipe.pipe';
+import { LoginComponent } from './login/login.component';
+import { HttpInterceptorServiceService } from './login/http-interceptor-service.service';
+import { AdminpageComponent } from './adminpage/adminpage.component';
+import { UserloginComponent } from './userlogin/userlogin.component';
+import { RegisterpageComponent } from './registerpage/registerpage.component';
+import { LoginsuccessComponent } from './loginsuccess/loginsuccess.component';
+import { NewregistrationComponent } from './newregistration/newregistration.component';
+import { SortpipePipe } from './sortpipe.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +41,15 @@ import { FilterpipePipe } from './filterpipe.pipe';
    ShopfoodComponent,
    CartitemComponent,
    SearchfoodComponent,
-   FilterpipePipe
+   FilterpipePipe,
+   LoginComponent,
+   AdminpageComponent,
+   UserloginComponent,
+   RegisterpageComponent,
+   LoginsuccessComponent,
+   NewregistrationComponent,
+   SortpipePipe
+
   ],
   imports: [
     BrowserModule,
@@ -41,7 +57,11 @@ import { FilterpipePipe } from './filterpipe.pipe';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorServiceService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

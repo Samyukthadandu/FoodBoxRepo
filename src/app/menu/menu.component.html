@@ -1,11 +1,13 @@
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <div><a href="https://www.javainuse.com" class="navbar-brand">YummyTummy</a></div>
+        <div><a href="https://www.javainuse.com" class="navbar-brand">FoodBox</a></div>
         <ul class="navbar-nav">
-            <li><a  class="nav-link" routerLink="/shop"  >Shop</a></li>
-            <li><a  class="nav-link" routerLink="/search"  >SearchFoods</a></li>
-            <li class="nav-item dropdown">
+            
+          <!---  <li><a  class="nav-link" routerLink="/shop"  >Shop</a></li>-->
+            <li><a  class="nav-link" routerLink="/userlogin"  >UserLogin</a></li>
+            <li><a  class="nav-link" routerLink="/login"  >AdminLogin</a></li>
+           <!--- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Admin
@@ -14,9 +16,11 @@
                     <a routerLink="/admin/users" class="dropdown-item">Users</a>
                     <a routerLink="/admin/foods" class="dropdown-item">Foods</a>
                     
-                </div>
-                  
+                </div>                 
             
+            </li>-->
+            <li>
+                <a *ngIf="isLoggedIn" class="nav-link" href="/logout" (click)=handleLogout()>Logout</a>
             </li>
         </ul>
     </nav>
